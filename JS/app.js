@@ -188,11 +188,22 @@ function randomCustomer(minCustomersPerHour, maxCustomersPerHour) {
 
 
 
-let allShops = [seattle, lima, paris, dubai, tokyo];
-function renderAllShops() {
-  for (let i = 0; i < allShops.length; i++) {
-    allShops[i].render();
-  }
-}
 
-renderAllShops();
+
+seattle.calcCustomerEachHour();
+seattle.calcCookiesEachHour();
+
+tokyo.calcCustomerEachHour();
+tokyo.calcCookiesEachHour();
+
+dubai.calcCustomerEachHour();
+dubai.calcCookiesEachHour();
+
+lima.calcCustomerEachHour();
+lima.calcCookiesEachHour();
+
+paris.calcCustomerEachHour();
+paris.calcCookiesEachHour();
+
+
+
