@@ -38,6 +38,10 @@ const seattle = {
     article.appendChild(listItem);
   }
 };
+/// Do not copy below!
+function randomCustomer(minCustomersPerHour, maxCustomersPerHour) {
+  return Math.floor(Math.random() * (minCustomersPerHour - maxCustomersPerHour) + minCustomersPerHour);
+}
 
 
 const tokyo = {
@@ -180,10 +184,6 @@ const lima = {
 };
 
 
-/// Do not copy below!
-function randomCustomer(minCustomersPerHour, maxCustomersPerHour) {
-  return Math.floor(Math.random() * (minCustomersPerHour - maxCustomersPerHour) + minCustomersPerHour);
-}
 
 
 
