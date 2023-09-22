@@ -1,6 +1,6 @@
 'use strict';
 console.log('js is connected');
-
+//global var
 let storeTable = document.getElementById('cookieTable');
 
 const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
@@ -19,7 +19,7 @@ let tokyo = new Locations('Tokyo', 3, 24, 1.2);
 let dubai = new Locations('Dubai', 11, 38, 3.7);
 let paris = new Locations('Paris', 20, 38, 2.3);
 let lima = new Locations('Lima', 2, 16, 4.6);
-
+//  [{name: 'seattle,  min, max}]
 let allStores = [seattle, tokyo, dubai, paris, lima];
 
 Locations.prototype.cookiesSold = function(){
@@ -29,18 +29,20 @@ Locations.prototype.cookiesSold = function(){
 };
 
 function randomCustomer(minCustomersPerHour, maxCustomersPerHour) {
-  return Math.floor(Math.random() * (minCustomersPerHour - maxCustomersPerHour) + minCustomersPerHour);
+  return Math.floor(Math.random() * (maxCustomersPerHour - minCustomersPerHour) + minCustomersPerHour);
 }
 
 /// Create table
 let tableHead = document.createElement('tr');
 let tableStoreHead = document.createElement('th');
 tableStoreHead.textContent = 'Locations';
+//<tr></tr>   <- gives too   <th>Locations</th>
 tableHead.appendChild(tableStoreHead);
 storeTable.appendChild(tableHead);
 
 for(let i = 0; i < hours.length; i++){
   let tableHours = document.createElement('th');
+  // console.log(hours[i]);
   tableHours.textContent = hours[i];
   tableHead.appendChild(tableHours);
 }
@@ -54,6 +56,7 @@ Locations.prototype.storeInformation = function(){
   locationRow.appendChild(locationHead);
 
   for(let i = 0; i < hours.length; i++){
+
     this.totalDailyCookies += this.cookiesEachHour[i];
     let locationCube = document.createElement('td');
     locationCube.textContent = this.cookiesEachHour[i];
@@ -71,9 +74,13 @@ let headTotalTop = document.createElement('th');
 headTotalTop.textContent = ('Total');
 tableHead.appendChild(headTotalTop);
 
-Locations.prototype.render = function () {
-  let parentElement = document.getElementById('footerTotals');
 
+// function render(){
+//  is going to render stuff to our page
+// }
+
+//objects(you can use)function = anonymous function expression
+Locations.prototype.render = function () {
   let footerRow = document.createElement('tr');
   let totalTitle = document.createElement('th');
   totalTitle.textContent = 'Total';
@@ -85,7 +92,8 @@ Locations.prototype.render = function () {
     let hourlyTotal = 0;
 
     for (let j = 0; j < allStores.length; j++) {
-      hourlyTotal = hourlyTotal + allStores[j].cookiesPerHour[i];
+      // console.log(allStores[j].cookiesEachHour[i]);
+      hourlyTotal = hourlyTotal + allStores[j].cookiesEachHour[i];
     }
     grandTotal += hourlyTotal;
     let hourlyTotalTd = document.createElement('td');
@@ -95,7 +103,7 @@ Locations.prototype.render = function () {
   let grandTotalRow = document.createElement('td');
   grandTotalRow.textContent = grandTotal;
   footerRow.appendChild(grandTotalRow);
-  parentElement.appendChild(footerRow);
+  storeTable.appendChild(footerRow);
 };
 
 
