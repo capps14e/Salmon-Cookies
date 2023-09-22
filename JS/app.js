@@ -24,13 +24,11 @@ let allStores = [seattle, tokyo, dubai, paris, lima];
 
 Locations.prototype.cookiesSold = function(){
   for(let i = 0; i < hours.length; i++){
-    //
-    this.cookiesEachHour[i] = Math.floor(randomCustomer(23, 65) * this.avgCookiesPerSale);
+    this.cookiesEachHour[i] = Math.floor(randomCustomer(this.minCustomersPerHour, this.maxCustomersPerHour) * this.avgCookiesPerSale);
   }
 };
-//       randomCustomer(           23,             65)
-function randomCustomer(minCustomersPerHour, maxCustomersPerHour) {
 
+function randomCustomer(minCustomersPerHour, maxCustomersPerHour) {
   return Math.floor(Math.random() * (maxCustomersPerHour - minCustomersPerHour) + minCustomersPerHour);
 }
 
@@ -38,11 +36,13 @@ function randomCustomer(minCustomersPerHour, maxCustomersPerHour) {
 let tableHead = document.createElement('tr');
 let tableStoreHead = document.createElement('th');
 tableStoreHead.textContent = 'Locations';
+//<tr></tr>   <- gives too   <th>Locations</th>
 tableHead.appendChild(tableStoreHead);
 storeTable.appendChild(tableHead);
 
 for(let i = 0; i < hours.length; i++){
   let tableHours = document.createElement('th');
+  // console.log(hours[i]);
   tableHours.textContent = hours[i];
   tableHead.appendChild(tableHours);
 }
@@ -56,6 +56,7 @@ Locations.prototype.storeInformation = function(){
   locationRow.appendChild(locationHead);
 
   for(let i = 0; i < hours.length; i++){
+
     this.totalDailyCookies += this.cookiesEachHour[i];
     let locationCube = document.createElement('td');
     locationCube.textContent = this.cookiesEachHour[i];
@@ -73,6 +74,12 @@ let headTotalTop = document.createElement('th');
 headTotalTop.textContent = ('Total');
 tableHead.appendChild(headTotalTop);
 
+
+// function render(){
+//  is going to render stuff to our page
+// }
+
+//objects(you can use)function = anonymous function expression
 Locations.prototype.render = function () {
   let parentElement = document.getElementById('footerTotals');
 
@@ -87,7 +94,8 @@ Locations.prototype.render = function () {
     let hourlyTotal = 0;
 
     for (let j = 0; j < allStores.length; j++) {
-      hourlyTotal = hourlyTotal + allStores[j].cookiesPerHour[i];
+      // console.log(allStores[j].cookiesEachHour[i]);
+      hourlyTotal = hourlyTotal + allStores[j].cookiesEachHour[i];
     }
     grandTotal += hourlyTotal;
     let hourlyTotalTd = document.createElement('td');
