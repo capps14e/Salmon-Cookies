@@ -81,8 +81,6 @@ tableHead.appendChild(headTotalTop);
 
 //objects(you can use)function = anonymous function expression
 Locations.prototype.render = function () {
-  let parentElement = document.getElementById('footerTotals');
-
   let footerRow = document.createElement('tr');
   let totalTitle = document.createElement('th');
   totalTitle.textContent = 'Total';
@@ -105,7 +103,7 @@ Locations.prototype.render = function () {
   let grandTotalRow = document.createElement('td');
   grandTotalRow.textContent = grandTotal;
   footerRow.appendChild(grandTotalRow);
-  parentElement.appendChild(footerRow);
+  storeTable.appendChild(footerRow);
 };
 
 
