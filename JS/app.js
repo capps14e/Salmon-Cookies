@@ -1,6 +1,6 @@
 'use strict';
 console.log('js is connected');
-
+//global var
 let storeTable = document.getElementById('cookieTable');
 
 const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
@@ -19,17 +19,19 @@ let tokyo = new Locations('Tokyo', 3, 24, 1.2);
 let dubai = new Locations('Dubai', 11, 38, 3.7);
 let paris = new Locations('Paris', 20, 38, 2.3);
 let lima = new Locations('Lima', 2, 16, 4.6);
-
+//  [{name: 'seattle,  min, max}]
 let allStores = [seattle, tokyo, dubai, paris, lima];
 
 Locations.prototype.cookiesSold = function(){
   for(let i = 0; i < hours.length; i++){
-    this.cookiesEachHour[i] = Math.floor(randomCustomer(this.minCustomersPerHour, this.maxCustomersPerHour) * this.avgCookiesPerSale);
+    //
+    this.cookiesEachHour[i] = Math.floor(randomCustomer(23, 65) * this.avgCookiesPerSale);
   }
 };
-
+//       randomCustomer(           23,             65)
 function randomCustomer(minCustomersPerHour, maxCustomersPerHour) {
-  return Math.floor(Math.random() * (minCustomersPerHour - maxCustomersPerHour) + minCustomersPerHour);
+
+  return Math.floor(Math.random() * (maxCustomersPerHour - minCustomersPerHour) + minCustomersPerHour);
 }
 
 /// Create table
